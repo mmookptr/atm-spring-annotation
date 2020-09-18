@@ -1,5 +1,6 @@
 package th.ac.ku.atm;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -7,15 +8,17 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Value;
 
+@Component
+@Primary
 public class DataSourceFile implements DataSource {
-
     private String filename;
 
     /**
      * @param filename the name of the customer file
      */
-    public DataSourceFile(String filename) {
+    public DataSourceFile(@Value("${filename}") String filename) {
         this.filename = filename;
     }
 

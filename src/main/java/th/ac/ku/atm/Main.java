@@ -2,7 +2,6 @@ package th.ac.ku.atm;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import th.ac.ku.atm.DataSourceFile;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,10 +9,7 @@ public class Main {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("bean.xml");
 
-        DataSourceFile dataSourceFile = new DataSourceFile("customers.txt");
-        Bank bank = new Bank("My Bank", dataSourceFile);
-        ATM atm = new ATM(bank);
-        AtmUI atmUI = new AtmUI(atm);
+        AtmUI atmUI= context.getBean(AtmUI.class);
         atmUI.run();
     }
 }
